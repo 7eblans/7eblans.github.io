@@ -78,6 +78,8 @@
 						$('#ideology-label').html(`${ideologies_names[max_values[0]][0].capitalize()}-${ideologies_names[max_values[1]][0]}-${ideologies_names[max_values[2]][1]} еблан`)
 					} else if (ideologies_pers.getKeyByValue(max).length == 2) {
 						$('#ideology-label').html(`${ideologies_names[max_values[0]][0].capitalize()}-${ideologies_names[max_values[1]][1]} еблан`)
+					} else if (ideologies_pers.getKeyByValue(max).length == 1) {
+						$('#ideology-label').html(`${ideologies_names[max_values[0]][0].capitalize()} еблан`)
 					} else if (ideologies_pers.getKeyByValue(max).length < 7) {
 						$('#ideology-label').html('Почти всеидеологический еблан')
 					} 
