@@ -1,0 +1,37 @@
+<html>
+	<head>
+		<link rel="stylesheet" href="style.css">
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+		<script>
+			var eblans = ['авторитарный', 'большевистский', 'анархический', 'либеральный', 'социалистический', 'националистический', 'консерватический'];
+			var num = 1;
+			var pers = [];
+			$(document).ready(function(){
+				$('#question-number').html('Вопрос 1 из 7')
+				$('#question-text').html('Вы -- авторитарный еблан.')
+			})
+			function next_question(per) {
+					pers.push(per);
+					if (num != 7) {
+						$('#question-number').html('Вопрос ' + (num+1) + ' из 7')
+						$('#question-text').html('Вы -- ' + eblans[num] + ' еблан.')
+						num++;
+					} else {
+						window.location.replace('https://7eblans.github.io/result.html?av=' + pers[0] + '&b=' + pers[1] + '&an=' + pers[2] + '&l=' + pers[3] + '&s=' + pers[4] + '&f=' + pers[5] + '&k=' + pers[6])
+					}
+				}
+		</script>
+	</head>
+	<body>
+	<h1>7eblans</h1>
+	<hr>
+	<h2 style="text-align:center;" id="question-number"></h2>
+	<p class="question" id="question-text"></p>
+	<button class="button" onclick="next_question(100)" style="background-color: #1b5e20;">Полностью согласен</button> <br>
+	<button class="button" onclick="next_question(75)" style="background-color: #4caf50;">Скорее согласен</button> <br>
+	<button class="button" onclick="next_question(50)" style="background-color: #bbbbbb;">Не знаю/Не уверен</button> <br>
+	<button class="button" onclick="next_question(25)" style="background-color: #f44336;">Скорее не согласен</button> <br>
+	<button class="button" onclick="next_question(0)" style="background-color: #b71c1c;">Полностью не согласен</button> <br>
+	<button class="small_button" onclick="location.href='index.html';" style="background-color: #2196f3;">На главную</button><br>
+	</body>
+</html>
