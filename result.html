@@ -50,14 +50,15 @@
 					}
 				}
 				var ideologies_pers = {
-					'av': pers[0], 
-					'b': pers[1], 
-					'an': pers[2], 
-					'l': pers[3], 
-					's': pers[4], 
-					'f': pers[5], 
-					'k': pers[6]
+					'av': +pers[0], 
+					'b': +pers[1], 
+					'an': +pers[2], 
+					'l': +pers[3], 
+					's': +pers[4], 
+					'f': +pers[5], 
+					'k': +pers[6]
 				}
+				console.log(ideologies_pers)
 				if (if_arrays(pers, 0)) {
 					$('#ideology-label').html('Неизвестно')
 				} else if (if_arrays(pers, 25)) {
@@ -69,15 +70,17 @@
 				} else if (if_arrays(pers, 100)) {
 					$('#ideology-label').html('Абсолютный всеидеологический еблан')
 				} else {
-					var max = Math.max(Object.values(ideologies_pers))
+					var max = Math.max.apply(null, Object.values(ideologies_pers))
+					console.log(max)
 					var max_values = ideologies_pers.getKeyByValue(max)
-					if (ideologies_pers.getKeyByValue(max).length == 4) {
-						$('#ideology-label').html('Почти всеидеологический еблан')
-					} else if (ideologies_pers.getKeyByValue(max).length == 3) {
+					console.log(max_values)
+					if (ideologies_pers.getKeyByValue(max).length == 3) {
 						$('#ideology-label').html(`${ideologies_names[max_values[0]][0].capitalize()}-${ideologies_names[max_values[1]][0]}-${ideologies_names[max_values[2]][1]} еблан`)
 					} else if (ideologies_pers.getKeyByValue(max).length == 2) {
 						$('#ideology-label').html(`${ideologies_names[max_values[0]][0].capitalize()}-${ideologies_names[max_values[1]][1]} еблан`)
-					}	
+					} else if (ideologies_pers.getKeyByValue(max).length < 7) {
+						$('#ideology-label').html('Почти всеидеологический еблан')
+					} 
 				}
 			})
 		</script>
