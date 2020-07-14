@@ -6,15 +6,6 @@
 			var values = ['av', 'b', 'an', 'l', 's', 'f', 'k'];
 			var url = new URL(window.location.href);
 			var pers = [];
-			var ideologies_pers = {
-				'av': pers[0], 
-				'b': pers[1], 
-				'an': pers[2], 
-				'l': pers[3], 
-				's': pers[4], 
-				'f': pers[5], 
-				'k': pers[6]
-			}
 			var ideologies_names = {
 				'av': ['авторитарно', 'авторитарный'], 
 				'b': ['большевистско', 'большевистский'], 
@@ -57,6 +48,15 @@
 						$('#bar-addon-' + values[i]).css({width: '55%'})
 						pers.push(0)
 					}
+				}
+				var ideologies_pers = {
+					'av': pers[0], 
+					'b': pers[1], 
+					'an': pers[2], 
+					'l': pers[3], 
+					's': pers[4], 
+					'f': pers[5], 
+					'k': pers[6]
 				}
 				if (if_arrays(pers, 0)) {
 					$('#ideology-label').html('Неизвестно')
