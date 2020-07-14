@@ -1,0 +1,129 @@
+<html>
+	<head>
+		<link rel="stylesheet" href="style.css">
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+		<script>
+			var values = ['av', 'b', 'an', 'l', 's', 'f', 'k'];
+			var url = new URL(window.location.href);
+			var pers = [];
+			var ideologies_pers = {
+				'av': pers[0], 
+				'b': pers[1], 
+				'an': pers[2], 
+				'l': pers[3], 
+				's': pers[4], 
+				'f': pers[5], 
+				'k': pers[6]
+			}
+			var ideologies_names = {
+				'av': ['авторитарно', 'авторитарный'], 
+				'b': ['большевистско', 'большевистский'], 
+				'an': ['анархо', 'анархический'], 
+				'l': ['либерально', 'либеральный'], 
+				's': ['социалистическо', 'социалистический'], 
+				'f': ['националистическо', 'националистический'], 
+				'k': ['консерватическо', 'консерватический']
+			}
+			String.prototype.capitalize = function() {
+				return this.charAt(0).toUpperCase() + this.slice(1)
+			}
+			Object.prototype.getKeyByValue = function(value) {
+				var arr = [];
+				for( var prop in this ) {
+					if( this.hasOwnProperty( prop ) ) {
+						if( this[ prop ] === value )
+							arr.push(prop)
+					}
+				}
+				return arr;
+			}
+			function if_arrays(arr, value) {
+				for (let i = 0; i < arr.length; i++) {
+					if (arr[i] != value) return false;
+				}
+				return true;
+			}
+			$(document).ready(function(){
+				for (let i = 0; i < values.length; i++) {
+					if (url.searchParams.get(values[i]) != null) {
+						$('#text-' + values[i]).html(url.searchParams.get(values[i]) + '%')
+						$('#bar-' + values[i]).css({width: url.searchParams.get(values[i]) + '%'})
+						var getted_num = +url.searchParams.get(values[i]);
+						$('#bar-addon-' + values[i]).css({width: 100 - getted_num + '%'})
+						pers.push(url.searchParams.get(values[i]))
+					} else {
+						$('#text-' + values[i]).html('0%')
+						$('#bar-' + values[i]).css({width: '10%'})
+						$('#bar-addon-' + values[i]).css({width: '55%'})
+						pers.push(0)
+					}
+				}
+				if (if_arrays(pers, 0)) {
+					$('#ideology-label').html('Неизвестно')
+				} else if (if_arrays(pers, 25)) {
+					$('#ideology-label').html('Малый всеидеологический еблан')
+				} else if (if_arrays(pers, 50)) {
+					$('#ideology-label').html('Средний всеидеологический еблан')
+				} else if (if_arrays(pers, 75)) {
+					$('#ideology-label').html('Совершенный всеидеологический еблан')
+				} else if (if_arrays(pers, 100)) {
+					$('#ideology-label').html('Абсолютный всеидеологический еблан')
+				} else {
+					var max = Math.max(Object.values(ideologies_pers))
+					var max_values = ideologies_pers.getKeyByValue(max)
+					if (ideologies_pers.getKeyByValue(max).length == 4) {
+						$('#ideology-label').html('Почти всеидеологический еблан')
+					} else if (ideologies_pers.getKeyByValue(max).length == 3) {
+						$('#ideology-label').html(`${ideologies_names[max_values[0]][0].capitalize()}-${ideologies_names[max_values[1]][0]}-${ideologies_names[max_values[2]][1]} еблан`)
+					} else if (ideologies_pers.getKeyByValue(max).length == 2) {
+						$('#ideology-label').html(`${ideologies_names[max_values[0]][0].capitalize()}-${ideologies_names[max_values[1]][1]} еблан`)
+					}	
+			})
+		</script>
+	</head>
+	<body>
+	<h1>7eblans</h1>
+	<hr>
+	<h1>Результаты</h1>
+<h2>Авторитаризм:</h2>
+<div class="axis">
+    <div class="bar equality" id="bar-av" style="width: 58.5%;"><div class="text-wrapper" id="text-av">58.5%</div></div>
+    <div class="bar white" id="bar-addon-av" style="width: 54.4%;"></div>
+</div>
+<h2>Большевизм:</h2>
+<div class="axis">
+    <div class="bar might" id="bar-b" style="width: 51.1%;"><div class="text-wrapper" id="text-b">51.1%</div></div>
+    <div class="bar white" id="bar-addon-b" style="width: 54.4%;"></div>
+</div>
+<h2>Анархизм:</h2>
+<div class="axis">
+    <div class="bar liberty" id="bar-an" style="width: 40%;"><div class="text-wrapper" id="text-an">40.0%</div></div>
+    <div class="bar white" id="bar-addon-an" style="width: 54.4%;"></div>
+</div>
+<h2>Либерализм:</h2>
+<div class="axis">
+    <div class="bar tradition" id="bar-l" style="width: 45.6%;"><div class="text-wrapper" id="text-l">45.6%</div></div>
+    <div class="bar white" id="bar-addon-l" style="width: 54.4%;"></div>
+</div>
+<h2>Социализм:</h2>
+<div class="axis">
+    <div class="bar peace" id="bar-s" style="width: 45.6%;"><div class="text-wrapper" id="text-s">45.6%</div></div>
+    <div class="bar white" id="bar-addon-s" style="width: 54.4%;"></div>
+</div>
+<h2>Национализм:</h2>
+<div class="axis">
+    <div class="bar authority" id="bar-f" style="width: 45.6%;"><div class="text-wrapper" id="text-f">45.6%</div></div>
+    <div class="bar white" id="bar-addon-f" style="width: 54.4%;"></div>
+</div>
+<h2>Консерватизм:</h2>
+<div class="axis">
+    <div class="bar progress" id="bar-k" style="width: 45.6%;"><div class="text-wrapper" id="text-k">45.6%</div></div>
+    <div class="bar white" id="bar-addon-k" style="width: 54.4%;"></div>
+</div>
+<h2>Ближайшее совпадение: <span class="weight-300" id="ideology-label"></span></h2>
+<p>Идеологическое сопоставление не завершено и гораздо менее точное, чем значения и оси.</p>
+<p>Вы можете отправить эти результаты, скопировав и вставив URL в верхней части страницы или сделав скриншот.</p>
+	<hr>
+	<button class="button" onclick="location.href='index.html';" style="background-color: #2196f3;">Назад</button> <br>
+	</body>
+</html>
