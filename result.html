@@ -62,26 +62,26 @@
 				if (if_arrays(pers, 0)) {
 					$('#ideology-label').html('Неизвестно')
 				} else if (if_arrays(pers, 25)) {
-					$('#ideology-label').html('Малый всеидеологический еблан')
+					$('#ideology-label').html('Малый всеидеологический Путин')
 				} else if (if_arrays(pers, 50)) {
-					$('#ideology-label').html('Средний всеидеологический еблан')
+					$('#ideology-label').html('Средний всеидеологический Путин')
 				} else if (if_arrays(pers, 75)) {
-					$('#ideology-label').html('Совершенный всеидеологический еблан')
+					$('#ideology-label').html('Совершенный всеидеологический Путин')
 				} else if (if_arrays(pers, 100)) {
-					$('#ideology-label').html('Абсолютный всеидеологический еблан')
+					$('#ideology-label').html('Абсолютный всеидеологический Путин')
 				} else {
 					var max = Math.max.apply(null, Object.values(ideologies_pers))
 					console.log(max)
 					var max_values = ideologies_pers.getKeyByValue(max)
 					console.log(max_values)
 					if (ideologies_pers.getKeyByValue(max).length == 3) {
-						$('#ideology-label').html(`${ideologies_names[max_values[0]][0].capitalize()}-${ideologies_names[max_values[1]][0]}-${ideologies_names[max_values[2]][1]} еблан`)
+						$('#ideology-label').html(`${ideologies_names[max_values[0]][0].capitalize()}-${ideologies_names[max_values[1]][0]}-${ideologies_names[max_values[2]][1]} Путин`)
 					} else if (ideologies_pers.getKeyByValue(max).length == 2) {
-						$('#ideology-label').html(`${ideologies_names[max_values[0]][0].capitalize()}-${ideologies_names[max_values[1]][1]} еблан`)
+						$('#ideology-label').html(`${ideologies_names[max_values[0]][0].capitalize()}-${ideologies_names[max_values[1]][1]} Путин`)
 					} else if (ideologies_pers.getKeyByValue(max).length == 1) {
-						$('#ideology-label').html(`${ideologies_names[max_values[0]][1].capitalize()} еблан`)
+						$('#ideology-label').html(`${ideologies_names[max_values[0]][1].capitalize()} Путин`)
 					} else if (ideologies_pers.getKeyByValue(max).length < 7) {
-						$('#ideology-label').html('Почти всеидеологический еблан')
+						$('#ideology-label').html('Почти всеидеологический Путин')
 					} 
 				}
 			})
